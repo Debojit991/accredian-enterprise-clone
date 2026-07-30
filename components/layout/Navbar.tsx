@@ -37,12 +37,13 @@ export default function Navbar() {
           {/* Brand Logo & Authority Badge */}
           <Link 
             href="/" 
-            className="flex items-center gap-2 group cursor-pointer"
+            className="flex items-center gap-2 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38BDF8] rounded-xl p-1"
+            aria-label="Accredian Enterprise Home"
             onClick={closeMenu}
           >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0055FF] to-[#38BDF8] p-0.5 flex items-center justify-center shadow-[0_0_15px_rgba(0,85,255,0.4)] group-hover:scale-105 transition-transform duration-300">
               <div className="w-full h-full bg-[#070A12] rounded-[10px] flex items-center justify-center">
-                <ShieldCheck className="w-5 h-5 text-[#38BDF8]" />
+                <ShieldCheck className="w-5 h-5 text-[#38BDF8]" aria-hidden="true" />
               </div>
             </div>
             <div className="flex flex-col">
@@ -61,7 +62,7 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-slate-300 hover:text-[#38BDF8] transition-colors duration-200 cursor-pointer"
+                className="text-sm font-medium text-slate-300 hover:text-[#38BDF8] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38BDF8] rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer"
               >
                 {link.label}
               </Link>

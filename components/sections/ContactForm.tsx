@@ -161,8 +161,12 @@ export default function ContactForm() {
                 
                 {/* Server Error Alert Banner */}
                 {status === "error" && (
-                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center gap-3 text-red-400 text-sm">
-                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                  <div 
+                    role="alert" 
+                    aria-live="assertive"
+                    className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center gap-3 text-red-400 text-sm"
+                  >
+                    <AlertCircle className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
                     <span>{serverMessage}</span>
                   </div>
                 )}
@@ -174,7 +178,7 @@ export default function ContactForm() {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                      <User className="w-4 h-4" />
+                      <User className="w-4 h-4" aria-hidden="true" />
                     </div>
                     <input
                       type="text"
@@ -182,15 +186,17 @@ export default function ContactForm() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      aria-invalid={errors.name ? "true" : undefined}
+                      aria-describedby={errors.name ? "name-error" : undefined}
                       placeholder="e.g. Sarah Jenkins"
                       className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border text-sm text-white placeholder-slate-500 focus:outline-none transition-all duration-200 ${
                         errors.name
-                          ? "border-red-500/80 focus:border-red-500"
+                          ? "border-red-500/80 focus:border-red-500 focus:ring-1 focus:ring-red-500"
                           : "border-white/10 focus:border-[#0055FF] focus:ring-1 focus:ring-[#0055FF]"
                       }`}
                     />
                   </div>
-                  {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
+                  {errors.name && <p id="name-error" className="mt-1 text-xs text-red-400">{errors.name}</p>}
                 </div>
 
                 {/* Email Field */}
@@ -200,7 +206,7 @@ export default function ContactForm() {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                      <Mail className="w-4 h-4" />
+                      <Mail className="w-4 h-4" aria-hidden="true" />
                     </div>
                     <input
                       type="email"
@@ -208,15 +214,17 @@ export default function ContactForm() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      aria-invalid={errors.email ? "true" : undefined}
+                      aria-describedby={errors.email ? "email-error" : undefined}
                       placeholder="s.jenkins@enterprise.com"
                       className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border text-sm text-white placeholder-slate-500 focus:outline-none transition-all duration-200 ${
                         errors.email
-                          ? "border-red-500/80 focus:border-red-500"
+                          ? "border-red-500/80 focus:border-red-500 focus:ring-1 focus:ring-red-500"
                           : "border-white/10 focus:border-[#0055FF] focus:ring-1 focus:ring-[#0055FF]"
                       }`}
                     />
                   </div>
-                  {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
+                  {errors.email && <p id="email-error" className="mt-1 text-xs text-red-400">{errors.email}</p>}
                 </div>
 
                 {/* Company Field */}
@@ -226,7 +234,7 @@ export default function ContactForm() {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                      <Building2 className="w-4 h-4" />
+                      <Building2 className="w-4 h-4" aria-hidden="true" />
                     </div>
                     <input
                       type="text"
@@ -234,15 +242,17 @@ export default function ContactForm() {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
+                      aria-invalid={errors.company ? "true" : undefined}
+                      aria-describedby={errors.company ? "company-error" : undefined}
                       placeholder="e.g. Apex Global Technologies"
                       className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border text-sm text-white placeholder-slate-500 focus:outline-none transition-all duration-200 ${
                         errors.company
-                          ? "border-red-500/80 focus:border-red-500"
+                          ? "border-red-500/80 focus:border-red-500 focus:ring-1 focus:ring-red-500"
                           : "border-white/10 focus:border-[#0055FF] focus:ring-1 focus:ring-[#0055FF]"
                       }`}
                     />
                   </div>
-                  {errors.company && <p className="mt-1 text-xs text-red-400">{errors.company}</p>}
+                  {errors.company && <p id="company-error" className="mt-1 text-xs text-red-400">{errors.company}</p>}
                 </div>
 
                 {/* Message Field */}
@@ -252,7 +262,7 @@ export default function ContactForm() {
                   </label>
                   <div className="relative">
                     <div className="absolute top-3.5 left-3.5 pointer-events-none text-slate-400">
-                      <MessageSquare className="w-4 h-4" />
+                      <MessageSquare className="w-4 h-4" aria-hidden="true" />
                     </div>
                     <textarea
                       id="message"
@@ -260,15 +270,17 @@ export default function ContactForm() {
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}
+                      aria-invalid={errors.message ? "true" : undefined}
+                      aria-describedby={errors.message ? "message-error" : undefined}
                       placeholder="Tell us about your team size, targeted skill domains (AI, Data, Product), and timeline..."
                       className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border text-sm text-white placeholder-slate-500 focus:outline-none transition-all duration-200 ${
                         errors.message
-                          ? "border-red-500/80 focus:border-red-500"
+                          ? "border-red-500/80 focus:border-red-500 focus:ring-1 focus:ring-red-500"
                           : "border-white/10 focus:border-[#0055FF] focus:ring-1 focus:ring-[#0055FF]"
                       }`}
                     />
                   </div>
-                  {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
+                  {errors.message && <p id="message-error" className="mt-1 text-xs text-red-400">{errors.message}</p>}
                 </div>
 
                 {/* Submit Button */}

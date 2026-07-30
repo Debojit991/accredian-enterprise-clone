@@ -138,9 +138,9 @@ export default function CapabilitiesGrid() {
                       ))}
                     </div>
 
-                    <div className="flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-[#38BDF8] transition-colors pt-2">
+                    <div className="flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-[#38BDF8] transition-colors pt-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38BDF8] rounded-md">
                       <span>Explore Curricula & Syllabus</span>
-                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" aria-hidden="true" />
                     </div>
                   </div>
                 </GlassCard>

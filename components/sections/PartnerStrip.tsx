@@ -44,6 +44,8 @@ export default function PartnerStrip() {
       {/* Marquee Outer Container with Gradient Mask Edge Fades */}
       <div 
         className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"
+        role="region"
+        aria-label="Enterprise Client Partners Marquee"
       >
         {/* Framer Motion Continuous Marquee Strip */}
         <motion.div
@@ -61,13 +63,15 @@ export default function PartnerStrip() {
         >
           {MARQUEE_PARTNERS.map((partner, index) => {
             const Icon = partner.icon;
+            const isDuplicate = index >= PARTNERS.length;
             return (
               <div
                 key={`${partner.id}-${index}`}
+                aria-hidden={isDuplicate ? "true" : undefined}
                 className="group flex items-center gap-3 px-5 py-3 rounded-xl bg-white/[0.02] border border-white/5 hover:border-[#38BDF8]/40 hover:bg-white/[0.06] transition-all duration-300 cursor-pointer select-none"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-[#0055FF]/20 flex items-center justify-center text-slate-500 group-hover:text-[#38BDF8] transition-colors duration-300">
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-4 h-4" aria-hidden="true" />
                 </div>
                 <div className="flex flex-col text-left">
                   <span className="text-sm font-bold tracking-tight text-slate-400 group-hover:text-white font-heading transition-colors duration-300">
