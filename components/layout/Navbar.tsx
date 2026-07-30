@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShieldCheck, ArrowRight } from "lucide-react";
+import { Menu, X, ShieldCheck } from "lucide-react";
 
 /**
- * Route definition interface for data-driven navigation links
+ * Interface defining navigation link structure
  */
 export interface NavRoute {
   label: string;
@@ -14,13 +14,17 @@ export interface NavRoute {
 }
 
 /**
- * Navigation items configuration
+ * Exact reference links for Accredian Enterprise landing page
  */
 const NAV_LINKS: NavRoute[] = [
-  { label: "Solutions", href: "#capabilities" },
-  { label: "Industries", href: "#partners" },
-  { label: "Case Studies", href: "#testimonials" },
-  { label: "Resources", href: "#metrics" },
+  { label: "Home", href: "#hero" },
+  { label: "Stats", href: "#metrics" },
+  { label: "Clients", href: "#partners" },
+  { label: "Accredian Edge", href: "#edge" },
+  { label: "CAT", href: "#cat" },
+  { label: "How It Works", href: "#expertise" },
+  { label: "FAQs", href: "#contact" },
+  { label: "Testimonials", href: "#testimonials" },
 ];
 
 export default function Navbar() {
@@ -30,66 +34,61 @@ export default function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#070A12]/85 border-b border-white/10 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           
           {/* Brand Logo & Authority Badge */}
           <Link 
             href="/" 
-            className="flex items-center gap-2 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38BDF8] rounded-xl p-1"
+            className="flex items-center gap-2 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] rounded-xl p-1"
             aria-label="Accredian Enterprise Home"
             onClick={closeMenu}
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0055FF] to-[#38BDF8] p-0.5 flex items-center justify-center shadow-[0_0_15px_rgba(0,85,255,0.4)] group-hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-full bg-[#070A12] rounded-[10px] flex items-center justify-center">
-                <ShieldCheck className="w-5 h-5 text-[#38BDF8]" aria-hidden="true" />
-              </div>
+            <div className="w-9 h-9 rounded-lg bg-[#0055FF] p-0.5 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300">
+              <ShieldCheck className="w-5 h-5 text-white" aria-hidden="true" />
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-xl tracking-tight text-white font-heading">
-                ACCREDIAN <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38BDF8] to-[#0055FF]">ENTERPRISE</span>
+              <span className="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 font-heading">
+                ACCREDIAN <span className="text-[#0055FF]">ENTERPRISE</span>
               </span>
-              <span className="text-[10px] uppercase tracking-widest text-slate-400 font-mono -mt-1">
-                Workforce Transformation
+              <span className="text-[9px] uppercase tracking-widest text-slate-500 font-mono -mt-1">
+                Capability Architecture
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Main Navigation">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-slate-300 hover:text-[#38BDF8] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#38BDF8] rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer"
+                className="text-xs xl:text-sm font-semibold text-slate-700 hover:text-[#0055FF] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0055FF] rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer font-sans"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* Desktop Primary Call to Action */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Desktop CTA Button */}
+          <div className="hidden md:flex items-center">
             <Link
               href="#contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#0055FF] hover:bg-[#0044CC] text-white text-sm font-semibold shadow-[0_0_20px_rgba(0,85,255,0.35)] hover:shadow-[0_0_25px_rgba(0,85,255,0.5)] transition-all duration-300 cursor-pointer group"
+              className="px-5 py-2.5 rounded-lg bg-[#0055FF] hover:bg-[#0044CC] text-white text-xs sm:text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0055FF]"
             >
-              <span>Book Enterprise Demo</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+              Enquire Now
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
-          <div className="md:hidden flex items-center">
+          {/* Mobile Hamburger Toggle Button */}
+          <div className="flex lg:hidden items-center">
             <button
               onClick={toggleMenu}
-              type="button"
-              className="p-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 focus:outline-none cursor-pointer"
-              aria-expanded={isOpen}
               aria-label="Toggle navigation menu"
+              className="p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-[#0055FF] transition-colors"
             >
-              {isOpen ? <X className="w-6 h-6 text-[#38BDF8]" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -103,30 +102,28 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="md:hidden border-t border-white/10 bg-[#070A12]/95 backdrop-blur-2xl overflow-hidden"
+            className="lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3 shadow-lg"
           >
-            <div className="max-w-7xl mx-auto px-4 py-6 space-y-4 flex flex-col">
+            <div className="flex flex-col space-y-2">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
                   onClick={closeMenu}
-                  className="px-3 py-2.5 rounded-lg text-base font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
+                  className="px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:text-[#0055FF] hover:bg-slate-50 transition-colors"
                 >
                   {link.label}
                 </Link>
               ))}
-
-              <div className="pt-4 border-t border-white/10">
-                <Link
-                  href="#contact"
-                  onClick={closeMenu}
-                  className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#0055FF] text-white font-semibold text-center shadow-[0_0_20px_rgba(0,85,255,0.4)] cursor-pointer"
-                >
-                  <span>Book Enterprise Demo</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+            </div>
+            <div className="pt-2">
+              <Link
+                href="#contact"
+                onClick={closeMenu}
+                className="w-full inline-block text-center px-5 py-3 rounded-lg bg-[#0055FF] hover:bg-[#0044CC] text-white text-sm font-semibold shadow-md transition-all"
+              >
+                Enquire Now
+              </Link>
             </div>
           </motion.div>
         )}

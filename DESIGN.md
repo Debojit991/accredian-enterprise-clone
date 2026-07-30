@@ -1,78 +1,21 @@
-# Accredian Enterprise - Design System Specifications
+# Corporate Light Mode Design System — Accredian Enterprise
 
-## Executive Overview
-A corporate-grade B2B design system built for high trust, executive authority, and enterprise workforce upskilling platforms.
+## Color Tokens
+- **Background Main**: `#FFFFFF` (Pure White)
+- **Background Secondary**: `#F8FAFC` (Slate Light Blue)
+- **Background Alternate**: `#F1F5F9` (Slate Soft)
+- **Primary Text**: `#0F172A` (Slate 900)
+- **Secondary Text**: `#475569` (Slate 600)
+- **Brand Primary Accent**: `#0055FF` (Corporate Blue)
+- **Brand Accent Glow**: `#2563EB` (Royal Blue)
+- **Card Background**: `#FFFFFF`
+- **Card Border**: `#E2E8F0` (Slate 200)
 
----
+## Typography
+- **Heading**: `Plus Jakarta Sans`, sans-serif
+- **Body**: `Inter`, sans-serif
 
-## 1. Color Palette
-
-| Token Role | Name | Hex Code | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Primary Brand** | Midnight Slate Navy | `#0B132B` *(Manually Tweaked from `#0F172A`)* | Hero background, primary headings, core corporate identity |
-| **Secondary Brand** | Deep Steel Slate | `#1C2541` | Card containers, surface backgrounds, component fills |
-| **Accent / CTA** | Enterprise Sapphire Blue | `#0055FF` *(Manually Tweaked from `#0284C7`)* | Primary buttons, active tabs, interactive indicators |
-| **Accent Glow** | Electric Cyan Highlight | `#38BDF8` | Micro-animations, gradient borders, metric badge accents |
-| **Neutral Background** | Dark Vault Base | `#070A12` | Dark mode page background |
-| **Neutral Card** | Glass Slate Surface | `rgba(28, 37, 65, 0.6)` | Glassmorphism cards with backdrop blur |
-| **Neutral Text** | Pure Ice / Muted Slate | `#F8FAFC` / `#94A3B8` | Body text, captions, secondary details |
-
----
-
-## 2. Typography Strategy
-
-*   **Heading Font**: `Plus Jakarta Sans` / `Outfit` (Modern, bold, authoritative geometric sans-serif for executive headers).
-*   **Body Font**: `Inter` (High legibility, clean corporate reading experience for enterprise metrics and feature blocks).
-
----
-
-## 3. Spacing Scale
-
-Based on a 4px grid system:
-*   `xs`: `4px` (`0.25rem`)
-*   `sm`: `8px` (`0.5rem`)
-*   `md`: `16px` (`1rem`)
-*   `lg`: `24px` (`1.5rem`)
-*   `xl`: `32px` (`2rem`)
-*   `2xl`: `48px` (`3rem`)
-*   `3xl`: `64px` (`4rem`)
-*   `4xl`: `96px` (`6rem`)
-
----
-
-## 4. Border Radius & Elevation Conventions
-
-*   **Border Radius**:
-    *   `card-radius`: `14px` (`0.875rem`) *(Manually Tweaked from `16px` for sharper enterprise framing)*
-    *   `button-radius`: `8px` (`0.5rem`)
-    *   `pill-radius`: `9999px`
-*   **Shadows**:
-    *   `card-shadow`: `0 20px 40px -15px rgba(0, 0, 0, 0.5)`
-    *   `accent-glow`: `0 0 25px rgba(0, 85, 255, 0.35)`
-    *   `border-glow`: `1px solid rgba(56, 189, 248, 0.2)`
-
----
-
-## 5. Tailwind v4 CSS Theme Extension
-
-```css
-@theme {
-  --color-primary: #0B132B;
-  --color-secondary: #1C2541;
-  --color-accent: #0055FF;
-  --color-accent-glow: #38BDF8;
-  --color-surface: #070A12;
-  --color-card: rgba(28, 37, 65, 0.6);
-  --color-text-main: #F8FAFC;
-  --color-text-muted: #94A3B8;
-
-  --font-heading: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'Inter', sans-serif;
-
-  --radius-card: 0.875rem;
-  --radius-btn: 0.5rem;
-
-  --shadow-card: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-  --shadow-accent-glow: 0 0 25px rgba(0, 85, 255, 0.35);
-}
-```
+## Component Conventions
+- **Cards**: `bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-all`
+- **Buttons**: `bg-[#0055FF] text-white hover:bg-[#0044CC] font-semibold rounded-lg shadow-sm transition-all`
+- **Badges**: `bg-[#0055FF]/10 text-[#0055FF] border border-[#0055FF]/20 px-3 py-1 rounded-full text-xs font-semibold`

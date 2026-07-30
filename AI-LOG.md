@@ -19,6 +19,7 @@ This log tracks all prompts, phases, model decisions, and manual updates made du
 | **Phase 13: Lead Capture Form & API Route** | Create `ContactForm.tsx` client component with form input validation, state management (`idle`, `loading`, `success`, `error`), and `GlassCard` wrapper. Render at bottom of `app/page.tsx`. Manually engineer backend API route at `app/api/contact/route.ts`. | SectionHeading title ("Accelerate Your Enterprise"), subtitle ("Connect with our solutions team to architect your custom upskilling deployment"), GlassCard layout container. | **1. Manually engineered `app/api/contact/route.ts` POST endpoint** with request validation, console logging ("New Enterprise Lead Captured:"), and mock delay. **2. Implemented client-side regex email validation** and field error tracking in `ContactForm.tsx`. |
 | **Phase 14: Senior QA & Accessibility Audit** | Audit all components in `/components/sections/` and `/components/layout/` for responsive breakpoints, accessibility (aria-labels, alt text, focus ring states), screen reader optimization, and aria-live status messaging. | Component hierarchy, responsive grid structures, dark-mode glassmorphism theme tokens. | **1. Added `aria-hidden="true"`** to decorative icons and duplicated marquee logos in `PartnerStrip.tsx`. **2. Added `focus-visible:ring-2 focus-visible:ring-[#38BDF8]`** across interactive links and triggers. **3. Enhanced `ContactForm.tsx`** with `aria-describedby` error associations and `aria-live="assertive"` alert region. |
 | **Phase 15: Premium Bento Card Graphics** | Import `BrainCircuit`, `Network`, `ShieldCheck` in `CapabilitiesGrid.tsx`. Inject absolute-positioned 256px `BrainCircuit` background graphic (`-bottom-6 -right-6 text-[#0055FF]/5`) on featured bento cards and optimize card flex layout (`justify-start gap-8`). | Bento Grid responsive structure, data-driven `Capability` interface, tag badges, metric indicators, and glassmorphism styling. | **1. Injected absolute-positioned `BrainCircuit` background icon** on featured bento card with subtle opacity hover glow (`text-[#0055FF]/5` to `text-[#0055FF]/10`). **2. Optimized card flex layout** (`flex flex-col justify-start gap-8`) for organic spacing. |
+| **Phase 16: Master Visual Pivot to Light Mode** | Noticed the AI initially hallucinated a dark-mode SaaS design that deviated from the source URL. Intervened and engineered a master prompt to successfully pivot the entire Next.js architecture to the correct light-mode corporate design system and correct sections. Overwrote globals.css, DESIGN.md, Navbar, Hero, MetricsBar, PartnerStrip, and generated AccredianEdge.tsx, DomainExpertise.tsx, and CATFramework.tsx. | Next.js App Router architecture, Framer Motion animations, data-driven interfaces, and /api/contact route. | **1. Overwrote globals.css & DESIGN.md** to light mode (`#FFFFFF` bg, `#0F172A` text, `#0055FF` accent). **2. Updated Navbar** with exact reference links ('Home', 'Stats', 'Clients', 'Accredian Edge', 'CAT', 'How It Works', 'FAQs', 'Testimonials'). **3. Refactored Hero, MetricsBar, PartnerStrip** to exact text/stats. **4. Built AccredianEdge, DomainExpertise, CATFramework** core modules. |
 
 ---
 
@@ -28,25 +29,30 @@ The following is the planned structure for the **Accredian Enterprise Landing Pa
 
 ### 1. Hero Section
 *   **Reference Site Intent:** Introduce Accredian's enterprise workforce upskilling and leadership transformation solutions with direct enterprise engagement CTAs.
-*   **Original Headline / Steering Angle:** *"Future-Proof Your Enterprise: Architecting High-Impact Talent in AI & Data Leadership"*
-*   **Visual/Steering Plan:** Premium dark-mode glassmorphism interface with high-contrast typography, interactive enterprise demo CTA modal trigger, and ambient background glow animations.
+*   **Original Headline / Steering Angle:** *"Next-Gen Expertise For Your Enterprise"*
+*   **Visual/Steering Plan:** Crisp light-mode corporate interface with high-contrast typography, 3 feature checkmarks, single 'Enquire Now' CTA, and capability preview card.
 
 ### 2. Metrics Bar
-*   **Reference Site Intent:** Display key quantitative impact metrics (e.g., learners trained, completion rates, enterprise clients, ROI).
-*   **Original Headline / Steering Angle:** *"Quantifiable Excellence: Scaling Capability at Enterprise Velocity"*
-*   **Visual/Steering Plan:** Modern numerical metric counter bar featuring dynamic counting animations, highlighting key stats (50,000+ Professionals Upskilled, 95% Program Completion, 4.8/5 Enterprise Rating, 3.5x Talent ROI).
+*   **Reference Site Intent:** Display key quantitative impact metrics (10K+ Professionals Trained, 200+ Sessions Delivered, 5K+ Active Learners).
+*   **Original Headline / Steering Angle:** *"Our Track Record: The Numbers Behind Our Success"*
+*   **Visual/Steering Plan:** Clean white background cards with soft drop shadows and animated count-up counters.
 
-### 3. Partner Strip (Industry Titans)
-*   **Reference Site Intent:** Social proof showcasing corporate clients, institutional partners, and tech leaders collaborating with Accredian.
-*   **Original Headline / Steering Angle:** *"Trusted by Global Market Leaders & Institutional Pioneers"*
-*   **Visual/Steering Plan:** Continuous infinite-scroll marquee showcasing high-resolution monochrome logos of Fortune 500 companies and tech leaders with subtle color illumination on hover.
+### 3. Partner Strip (Corporate Clients)
+*   **Reference Site Intent:** Social proof showcasing corporate client partners (HCL, Reliance, IBM, CRIF, ADP, Bayer).
+*   **Original Headline / Steering Angle:** *"Our Proven Partnerships"*
+*   **Visual/Steering Plan:** Continuous infinite marquee showcasing corporate client badges on slate background.
 
-### 4. Capabilities (Bento Grid)
-*   **Reference Site Intent:** Showcase core corporate training domain pillars (Artificial Intelligence, Data Science, Product Management, CXO Executive Leadership).
-*   **Original Headline / Steering Angle:** *"Modular Enterprise Upskilling: Custom-Engineered for Strategic Dominance"*
-*   **Visual/Steering Plan:** Responsive 4-card Bento Grid layout with dynamic hover effects, feature chips, interactive tab switching for custom enterprise curricula, and clean micro-interactions.
+### 4. Accredian Edge (7 Pillars)
+*   **Reference Site Intent:** Highlight the 7 core pillars of the Accredian learning framework.
+*   **Original Headline / Steering Angle:** *"The Accredian Edge"*
+*   **Visual/Steering Plan:** 7-step horizontal timeline/grid layout with blue circular icons.
 
-### 5. Testimonials (Voices of Transformation)
-*   **Reference Site Intent:** Real-world enterprise case studies, CXO quotes, and impact narratives from corporate partners.
-*   **Original Headline / Steering Angle:** *"Voices of Transformation: Executive Perspectives on Organizational Growth"*
-*   **Visual/Steering Plan:** Interactive carousel/slider with rich card layouts featuring executive avatars, company badges, highlighted metrics, and full testimonial quotes.
+### 5. Domain Expertise (7 Verticals)
+*   **Reference Site Intent:** Showcase core corporate training domain pillars.
+*   **Original Headline / Steering Angle:** *"Our Domain Expertise"*
+*   **Visual/Steering Plan:** Grid of 7 white cards with blue icons centered.
+
+### 6. CAT Framework
+*   **Reference Site Intent:** Present the 3-stage learning methodology (Concept, Application, Tools).
+*   **Original Headline / Steering Angle:** *"The CAT Framework"*
+*   **Visual/Steering Plan:** 3-step flex layout with phase badges and transition arrows.

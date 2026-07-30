@@ -2,89 +2,57 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
-import { Users, Award, Star, TrendingUp } from "lucide-react";
+import { Users, Award, BookOpen } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import GlassCard from "@/components/ui/GlassCard";
 
 /**
  * EnterpriseMetric Interface
- * Defines data schema driving quantitative enterprise performance statistics in the Metrics Bar
  */
 export interface EnterpriseMetric {
   id: string;
   numericTarget: number;
-  prefix?: string;
   suffix: string;
-  decimals?: number;
   label: string;
   subtext: string;
   icon: React.ElementType;
 }
 
 /**
- * Data-driven array driving the metrics bar stats
+ * Data strictly matching reference requirement
  */
 const METRICS_DATA: EnterpriseMetric[] = [
   {
-    id: "professionals",
-    numericTarget: 50000,
+    id: "trained",
+    numericTarget: 10000,
     suffix: "+",
-    label: "Professionals Upskilled",
-    subtext: "Across Global Enterprises",
+    label: "Professionals Trained",
+    subtext: "Across Global Enterprise Clients",
     icon: Users,
   },
   {
-    id: "completion",
-    numericTarget: 95,
-    suffix: "%",
-    label: "Program Completion",
-    subtext: "Industry-Leading Retention",
+    id: "sessions",
+    numericTarget: 200,
+    suffix: "+",
+    label: "Sessions Delivered",
+    subtext: "High-Impact Workshops & Programs",
     icon: Award,
   },
   {
-    id: "rating",
-    numericTarget: 4.8,
-    suffix: "/5",
-    decimals: 1,
-    label: "Enterprise Rating",
-    subtext: "From CXOs & HR Leaders",
-    icon: Star,
-  },
-  {
-    id: "roi",
-    numericTarget: 3.5,
-    suffix: "x",
-    decimals: 1,
-    label: "Talent ROI",
-    subtext: "Measured Productivity Uplift",
-    icon: TrendingUp,
+    id: "learners",
+    numericTarget: 5000,
+    suffix: "+",
+    label: "Active Learners",
+    subtext: "Engaged in Skill Masterclass Pipelines",
+    icon: BookOpen,
   },
 ];
 
-/**
- * Animated Counter sub-component using Framer Motion motion values
- * Triggered strictly once when scrolled into view
- */
-function AnimatedCounter({ 
-  target, 
-  prefix = "", 
-  suffix = "", 
-  decimals = 0 
-}: { 
-  target: number; 
-  prefix?: string; 
-  suffix?: string; 
-  decimals?: number;
-}) {
+function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) =>
-    latest.toLocaleString("en-US", {
-      minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals,
-    })
-  );
+  const rounded = useTransform(count, (latest) => Math.floor(latest).toLocaleString("en-US"));
 
   const [displayValue, setDisplayValue] = useState("0");
 
@@ -105,7 +73,6 @@ function AnimatedCounter({
 
   return (
     <span ref={ref} className="font-heading tracking-tight">
-      {prefix}
       {displayValue}
       {suffix}
     </span>
@@ -113,70 +80,44 @@ function AnimatedCounter({
 }
 
 export default function MetricsBar() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isContainerInView = useInView(containerRef, { once: true, margin: "-100px" });
-
   return (
-    <section id="metrics" className="relative z-20 -mt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-20">
-      <div ref={containerRef}>
+    <section id="metrics" className="relative py-20 bg-slate-50 border-y border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Reusable Section Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={isContainerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          <SectionHeading
-            badge="PROVEN PERFORMANCE"
-            title="Quantifiable Excellence: Scaling Capability at Enterprise Velocity"
-            className="mb-8"
-          />
-        </motion.div>
+        {/* Exact Required Steering Headline */}
+        <SectionHeading
+          badge="PROVEN PERFORMANCE"
+          title="Our Track Record: The Numbers Behind Our Success"
+          className="mb-12"
+        />
 
-        {/* Reusable GlassCard Wrapper */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isContainerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-        >
-          <GlassCard className="p-6 sm:p-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
-              {METRICS_DATA.map((metric, index) => {
-                const Icon = metric.icon;
-                return (
-                  <div
-                    key={metric.id}
-                    className={`flex flex-col items-center text-center ${
-                      index > 0 ? "pt-6 sm:pt-0 sm:pl-6 lg:pl-8" : ""
-                    }`}
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-8 h-8 rounded-lg bg-[#0055FF]/20 flex items-center justify-center text-[#38BDF8]">
-                        <Icon className="w-4 h-4" />
-                      </div>
-                      <span className="text-xs uppercase tracking-wider font-semibold text-slate-400 font-sans">
-                        {metric.label}
-                      </span>
-                    </div>
-
-                    <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-white text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-[#38BDF8]">
-                      <AnimatedCounter
-                        target={metric.numericTarget}
-                        prefix={metric.prefix}
-                        suffix={metric.suffix}
-                        decimals={metric.decimals}
-                      />
-                    </div>
-
-                    <p className="text-xs text-slate-400 font-medium mt-2">
-                      {metric.subtext}
-                    </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {METRICS_DATA.map((metric, index) => {
+            const Icon = metric.icon;
+            return (
+              <motion.div
+                key={metric.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <GlassCard hoverEffect className="p-8 text-center bg-white space-y-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#0055FF]/10 text-[#0055FF] flex items-center justify-center mx-auto">
+                    <Icon className="w-6 h-6" />
                   </div>
-                );
-              })}
-            </div>
-          </GlassCard>
-        </motion.div>
+                  <div className="text-4xl sm:text-5xl font-black text-slate-900 font-heading">
+                    <AnimatedCounter target={metric.numericTarget} suffix={metric.suffix} />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-slate-900 font-heading">{metric.label}</h3>
+                    <p className="text-xs text-slate-500 font-medium mt-1 font-sans">{metric.subtext}</p>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
