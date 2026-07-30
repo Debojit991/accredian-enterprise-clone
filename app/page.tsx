@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import MetricsBar from "@/components/sections/MetricsBar";
 import PartnerStrip from "@/components/sections/PartnerStrip";
+import CapabilitiesGrid from "@/components/sections/CapabilitiesGrid";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <MetricsBar />
       <PartnerStrip />
+      <CapabilitiesGrid />
     </div>
   );
 }
