@@ -7,6 +7,7 @@ This log tracks all prompts, phases, model decisions, and manual updates made du
 | **Phase 1: Setup & Mapping** | Create AI-LOG.md, map out reference site section order with original angles/headlines, and prepare for AI steering. | Full structure of the proposed log, table layout, and mapped section order. | *None (Initial file creation)* |
 | **Phase 2: Target Shift & Remapping** | Update target to Accredian Enterprise landing page (`enterprise.accredian.com`). Remap section order and generate new original steering headlines for the 5 required sections. | Log table format, original documentation template. | Remapped section structure from Refer & Earn to Enterprise landing page and updated steering headlines/angles. |
 | **Phase 3: Scaffolding & Initial Commit** | Scaffold Next.js application in `accredian-enterprise-clone`, initialize isolated Git repository, lock in initial commit, and install design dependencies (`lucide-react`, `framer-motion`, `clsx`, `tailwind-merge`). | Recommended Next.js defaults, TypeScript configuration, App router structure, Tailwind CSS. | Initialized dedicated Git root in project directory and added design tooling. |
+| **Phase 4: Design Tooling Injection** | Install `uipro-cli` globally, run `uipro init --ai antigravity`, install 21st.dev skills, and initialize `.21st/` design context with API key. | UI/UX Pro Max templates, 21st skills registry, `.21st/design.json`, and `.21st/DESIGN.md`. | Verified skill installation and generated workspace design context. |
 
 ---
 
