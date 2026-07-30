@@ -1,0 +1,235 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Quote, Building2, Award, Sparkles } from "lucide-react";
+
+/**
+ * Strict TypeScript interface for enterprise testimonial
+ */
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  quote: string;
+  impactMetric: string;
+  avatarInitials: string;
+  accentColor: string;
+}
+
+/**
+ * Data-driven array of realistic enterprise executive testimonials
+ */
+const TESTIMONIALS_DATA: Testimonial[] = [
+  {
+    id: "testimonial-1",
+    name: "Dr. Aris Thorne",
+    role: "Chief Data Officer",
+    company: "Global Financial Technologies",
+    quote: "Accredian Enterprise completely transformed our data science and AI capability scaling. In under six months, over 1,200 senior engineers and analysts were upskilled on enterprise LLM deployment, reducing our model time-to-market by 65%.",
+    impactMetric: "65% Faster AI Time-to-Market",
+    avatarInitials: "AT",
+    accentColor: "from-[#0055FF] to-[#38BDF8]",
+  },
+  {
+    id: "testimonial-2",
+    name: "Elena Rostova",
+    role: "VP of Engineering & Platform",
+    company: "Apex Cloud Systems",
+    quote: "Finding high-impact curricula tailored for senior architects is incredibly difficult. Accredian’s modular programs provided our engineering leads with deep hands-on expertise in MLOps, RAG architectures, and AI security governance.",
+    impactMetric: "1,400+ Engineers Certified",
+    avatarInitials: "ER",
+    accentColor: "from-purple-500 to-[#0055FF]",
+  },
+  {
+    id: "testimonial-3",
+    name: "Marcus Vance",
+    role: "Head of Product & Innovation",
+    company: "Nexus HealthTech Enterprise",
+    quote: "The strategic impact on our product pipeline was immediate. Our product managers and domain leads learned how to integrate generative AI features seamlessly while ensuring strict healthcare compliance and data privacy.",
+    impactMetric: "3.8x Product Delivery Velocity",
+    avatarInitials: "MV",
+    accentColor: "from-emerald-400 to-cyan-500",
+  },
+  {
+    id: "testimonial-4",
+    name: "Sophia Chen",
+    role: "Executive Director of Talent & Culture",
+    company: "Vanguard Logistics Global",
+    quote: "Accredian is not just a learning vendor—they are a true capability transformation partner. The executive dashboard gives our leadership full visibility into skill mastery and business ROI metrics across 14 global divisions.",
+    impactMetric: "98.4% Executive Retention Rate",
+    avatarInitials: "SC",
+    accentColor: "from-amber-400 to-[#0055FF]",
+  },
+];
+
+export default function Testimonials() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
+
+  const total = TESTIMONIALS_DATA.length;
+
+  /**
+   * Bounds-safe next slide transition using modulo arithmetic
+   */
+  const nextSlide = () => {
+    setDirection(1);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % total);
+  };
+
+  /**
+   * Bounds-safe previous slide transition using modulo arithmetic
+   */
+  const prevSlide = () => {
+    setDirection(-1);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + total) % total);
+  };
+
+  const currentTestimonial = TESTIMONIALS_DATA[currentIndex];
+
+  // Framer Motion slide variants
+  const slideVariants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 100 : -100,
+      opacity: 0,
+      scale: 0.96,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (dir: number) => ({
+      x: dir < 0 ? 100 : -100,
+      opacity: 0,
+      scale: 0.96,
+    }),
+  };
+
+  return (
+    <section id="testimonials" className="relative py-24 bg-[#070A12] border-t border-white/10 overflow-hidden">
+      {/* Ambient background glow */}
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#0055FF]/10 rounded-full blur-[150px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0055FF]/10 border border-[#0055FF]/20 text-[#38BDF8] text-xs uppercase tracking-widest font-mono mb-4">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>EXECUTIVE IMPACT</span>
+          </div>
+          {/* Exact Required Steering Headline */}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight leading-tight">
+            Voices of Transformation: Executive Perspectives on Organizational Growth
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-slate-400 font-sans">
+            Hear how enterprise leaders across Fortune 500 companies drive strategic capability upskilling with Accredian.
+          </p>
+        </div>
+
+        {/* Carousel Container */}
+        <div className="max-w-4xl mx-auto relative">
+          
+          {/* Main Animated Testimonial Card */}
+          <div className="relative min-h-[380px] sm:min-h-[320px] flex items-center">
+            <AnimatePresence custom={direction} mode="wait">
+              <motion.div
+                key={currentTestimonial.id}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full glass-card p-8 sm:p-12 rounded-2xl border border-white/15 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] relative bg-white/5 backdrop-blur-xl"
+              >
+                {/* Large Background Quote Icon */}
+                <Quote className="absolute top-6 right-8 w-20 h-20 text-white/5 pointer-events-none" />
+
+                <div className="flex flex-col justify-between h-full space-y-8 relative z-10">
+                  
+                  {/* Quote Text */}
+                  <p className="text-lg sm:text-xl lg:text-2xl text-slate-100 font-sans italic leading-relaxed">
+                    &ldquo;{currentTestimonial.quote}&rdquo;
+                  </p>
+
+                  {/* Impact Metric Badge & Author Info */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-6 border-t border-white/10">
+                    
+                    {/* Author Details */}
+                    <div className="flex items-center gap-4">
+                      <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${currentTestimonial.accentColor} flex items-center justify-center text-white font-bold font-heading text-sm shadow-md`}>
+                        {currentTestimonial.avatarInitials}
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold text-white font-heading">
+                          {currentTestimonial.name}
+                        </h4>
+                        <p className="text-xs text-[#38BDF8] font-medium font-sans">
+                          {currentTestimonial.role}
+                        </p>
+                        <p className="text-xs text-slate-400 font-mono flex items-center gap-1 mt-0.5">
+                          <Building2 className="w-3 h-3" />
+                          <span>{currentTestimonial.company}</span>
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Highlight Metric Chip */}
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0055FF]/15 border border-[#0055FF]/30 text-[#38BDF8] text-xs font-semibold">
+                      <Award className="w-4 h-4 text-[#38BDF8]" />
+                      <span>{currentTestimonial.impactMetric}</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation Controls & Pagination Indicators */}
+          <div className="flex items-center justify-between mt-8">
+            
+            {/* Slide Index Indicators */}
+            <div className="flex items-center gap-2">
+              {TESTIMONIALS_DATA.map((_, idx) => (
+                <button
+                  key={`dot-${idx}`}
+                  onClick={() => {
+                    setDirection(idx > currentIndex ? 1 : -1);
+                    setCurrentIndex(idx);
+                  }}
+                  aria-label={`Go to testimonial slide ${idx + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    idx === currentIndex
+                      ? "w-8 bg-[#38BDF8] shadow-[0_0_10px_rgba(56,189,248,0.5)]"
+                      : "w-2 bg-white/20 hover:bg-white/40"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Accessible Navigation Buttons */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={prevSlide}
+                aria-label="Previous Testimonial"
+                className="w-11 h-11 rounded-xl glass-card border border-white/10 hover:border-[#38BDF8]/50 hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#38BDF8]"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextSlide}
+                aria-label="Next Testimonial"
+                className="w-11 h-11 rounded-xl glass-card border border-white/10 hover:border-[#38BDF8]/50 hover:bg-white/10 flex items-center justify-center text-slate-300 hover:text-white transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#38BDF8]"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
