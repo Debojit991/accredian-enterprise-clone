@@ -3,6 +3,7 @@ import MetricsBar from "@/components/sections/MetricsBar";
 import PartnerStrip from "@/components/sections/PartnerStrip";
 import CapabilitiesGrid from "@/components/sections/CapabilitiesGrid";
 import Testimonials from "@/components/sections/Testimonials";
+import ContactForm from "@/components/sections/ContactForm";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <PartnerStrip />
       <CapabilitiesGrid />
       <Testimonials />
+      <ContactForm />
     </div>
   );
 }
