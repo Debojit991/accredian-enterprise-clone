@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Building2, ShieldCheck } from "lucide-react";
+import { Building2 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export interface Partner {
@@ -59,9 +59,9 @@ export default function PartnerStrip() {
                 <div
                   key={`${partner.id}-${index}`}
                   aria-hidden={isDuplicate ? "true" : undefined}
-                  className="group flex items-center gap-3 px-6 py-3.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#0055FF]/40 hover:bg-blue-50/50 transition-all duration-300 select-none cursor-pointer"
+                  className="group flex items-center gap-3 px-6 py-3.5 rounded-xl bg-white border border-slate-200/90 shadow-xs opacity-90 hover:opacity-100 hover:border-[#0055FF]/40 hover:bg-blue-50/50 transition-all duration-300 select-none cursor-pointer"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-[#0055FF] shadow-xs">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-[#0055FF] shadow-xs">
                     <Building2 className="w-4 h-4" aria-hidden="true" />
                   </div>
                   <div className="flex flex-col text-left">
