@@ -1,10 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bot, LineChart, Layers, Target, ArrowUpRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { Bot, LineChart, Layers, Target, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import SectionHeading from "@/components/ui/SectionHeading";
+import GlassCard from "@/components/ui/GlassCard";
 
 /**
- * Strict TypeScript interface for enterprise capability pillar
+ * Capability Interface
+ * Defines data schema driving modular enterprise learning capability bento grid cards
  */
 export interface Capability {
   id: string;
@@ -14,7 +17,7 @@ export interface Capability {
   icon: React.ElementType;
   tags: string[];
   metric: string;
-  colSpanDesktop: string; // Tailwind class for desktop bento grid span
+  colSpanDesktop: string;
   featured?: boolean;
 }
 
@@ -73,20 +76,13 @@ export default function CapabilitiesGrid() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0055FF]/10 border border-[#0055FF]/20 text-[#38BDF8] text-xs uppercase tracking-widest font-mono mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>MODULAR LEARNING PILLARS</span>
-          </div>
-          {/* Exact Required Steering Headline */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight leading-tight">
-            Modular Enterprise Upskilling: Custom-Engineered for Strategic Dominance
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-400 font-sans leading-relaxed">
-            Targeted capability verticals designed in collaboration with global industry leaders to accelerate enterprise digital transformation.
-          </p>
-        </div>
+        {/* Reusable Section Heading */}
+        <SectionHeading
+          badge="MODULAR LEARNING PILLARS"
+          title="Modular Enterprise Upskilling: Custom-Engineered for Strategic Dominance"
+          subtitle="Targeted capability verticals designed in collaboration with global industry leaders to accelerate enterprise digital transformation."
+          className="mb-16"
+        />
 
         {/* Asymmetric Bento Grid (1 Column on Mobile, 3 Columns on Desktop) */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -99,54 +95,55 @@ export default function CapabilitiesGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-                whileHover={{ y: -4 }}
-                className={`group glass-card p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-[#0055FF]/60 hover:shadow-[0_0_30px_rgba(0,85,255,0.25)] transition-all duration-300 flex flex-col justify-between relative overflow-hidden ${item.colSpanDesktop}`}
+                className={item.colSpanDesktop}
               >
-                {/* Subtle Card Background Accent Glow on Hover */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-[#0055FF]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <GlassCard hoverEffect className="p-6 sm:p-8 flex flex-col justify-between h-full group">
+                  {/* Subtle Card Background Accent Glow on Hover */}
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-[#0055FF]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                <div>
-                  {/* Card Header & Icon */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0055FF]/20 to-[#38BDF8]/10 border border-white/10 group-hover:border-[#38BDF8]/40 flex items-center justify-center text-[#38BDF8] group-hover:scale-110 transition-all duration-300">
-                      <Icon className="w-6 h-6" />
+                  <div>
+                    {/* Card Header & Icon */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0055FF]/20 to-[#38BDF8]/10 border border-white/10 group-hover:border-[#38BDF8]/40 flex items-center justify-center text-[#38BDF8] group-hover:scale-110 transition-all duration-300">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <div className="flex items-center gap-1 text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span>{item.metric}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1 text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>{item.metric}</span>
+
+                    {/* Title & Subtitle */}
+                    <span className="text-xs font-mono uppercase tracking-wider text-[#38BDF8] font-semibold">
+                      {item.subtitle}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white font-heading mt-1 mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#38BDF8] transition-all">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-slate-300 leading-relaxed font-sans mb-6">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  {/* Tag Chips & Interactive Link */}
+                  <div className="pt-6 border-t border-white/10 flex flex-col gap-4 mt-auto">
+                    <div className="flex flex-wrap gap-2">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300 group-hover:border-[#0055FF]/40 group-hover:bg-[#0055FF]/10 group-hover:text-[#38BDF8] transition-all duration-300 font-sans font-medium"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-[#38BDF8] transition-colors pt-2">
+                      <span>Explore Curricula & Syllabus</span>
+                      <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                     </div>
                   </div>
-
-                  {/* Title & Subtitle */}
-                  <span className="text-xs font-mono uppercase tracking-wider text-[#38BDF8] font-semibold">
-                    {item.subtitle}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white font-heading mt-1 mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#38BDF8] transition-all">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed font-sans mb-6">
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Tag Chips & Interactive Link */}
-                <div className="pt-6 border-t border-white/10 flex flex-col gap-4 mt-auto">
-                  <div className="flex flex-wrap gap-2">
-                    {item.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300 group-hover:border-[#0055FF]/40 group-hover:bg-[#0055FF]/10 group-hover:text-[#38BDF8] transition-all duration-300 font-sans font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center justify-between text-xs font-semibold text-slate-400 group-hover:text-[#38BDF8] transition-colors pt-2">
-                    <span>Explore Curricula & Syllabus</span>
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
-                  </div>
-                </div>
+                </GlassCard>
               </motion.div>
             );
           })}

@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote, Building2, Award, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, Building2, Award } from "lucide-react";
+import SectionHeading from "@/components/ui/SectionHeading";
+import GlassCard from "@/components/ui/GlassCard";
 
 /**
- * Strict TypeScript interface for enterprise testimonial
+ * Testimonial Interface
+ * Defines data schema driving realistic enterprise executive quotes and ROI highlights
  */
 export interface Testimonial {
   id: string;
@@ -88,7 +91,6 @@ export default function Testimonials() {
 
   const currentTestimonial = TESTIMONIALS_DATA[currentIndex];
 
-  // Framer Motion slide variants
   const slideVariants = {
     enter: (dir: number) => ({
       x: dir > 0 ? 100 : -100,
@@ -114,20 +116,13 @@ export default function Testimonials() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#0055FF]/10 border border-[#0055FF]/20 text-[#38BDF8] text-xs uppercase tracking-widest font-mono mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>EXECUTIVE IMPACT</span>
-          </div>
-          {/* Exact Required Steering Headline */}
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight leading-tight">
-            Voices of Transformation: Executive Perspectives on Organizational Growth
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-400 font-sans">
-            Hear how enterprise leaders across Fortune 500 companies drive strategic capability upskilling with Accredian.
-          </p>
-        </div>
+        {/* Reusable Section Heading */}
+        <SectionHeading
+          badge="EXECUTIVE IMPACT"
+          title="Voices of Transformation: Executive Perspectives on Organizational Growth"
+          subtitle="Hear how enterprise leaders across Fortune 500 companies drive strategic capability upskilling with Accredian."
+          className="mb-16"
+        />
 
         {/* Carousel Container */}
         <div className="max-w-4xl mx-auto relative">
@@ -143,47 +138,49 @@ export default function Testimonials() {
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full glass-card p-8 sm:p-12 rounded-2xl border border-white/15 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] relative bg-white/5 backdrop-blur-xl"
+                className="w-full"
               >
-                {/* Large Background Quote Icon */}
-                <Quote className="absolute top-6 right-8 w-20 h-20 text-white/5 pointer-events-none" />
+                <GlassCard className="p-8 sm:p-12 relative">
+                  {/* Large Background Quote Icon */}
+                  <Quote className="absolute top-6 right-8 w-20 h-20 text-white/5 pointer-events-none" />
 
-                <div className="flex flex-col justify-between h-full space-y-8 relative z-10">
-                  
-                  {/* Quote Text */}
-                  <p className="text-lg sm:text-xl lg:text-2xl text-slate-100 font-sans italic leading-relaxed">
-                    &ldquo;{currentTestimonial.quote}&rdquo;
-                  </p>
-
-                  {/* Impact Metric Badge & Author Info */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-6 border-t border-white/10">
+                  <div className="flex flex-col justify-between h-full space-y-8 relative z-10">
                     
-                    {/* Author Details */}
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${currentTestimonial.accentColor} flex items-center justify-center text-white font-bold font-heading text-sm shadow-md`}>
-                        {currentTestimonial.avatarInitials}
-                      </div>
-                      <div>
-                        <h4 className="text-base font-bold text-white font-heading">
-                          {currentTestimonial.name}
-                        </h4>
-                        <p className="text-xs text-[#38BDF8] font-medium font-sans">
-                          {currentTestimonial.role}
-                        </p>
-                        <p className="text-xs text-slate-400 font-mono flex items-center gap-1 mt-0.5">
-                          <Building2 className="w-3 h-3" />
-                          <span>{currentTestimonial.company}</span>
-                        </p>
-                      </div>
-                    </div>
+                    {/* Quote Text */}
+                    <p className="text-lg sm:text-xl lg:text-2xl text-slate-100 font-sans italic leading-relaxed">
+                      &ldquo;{currentTestimonial.quote}&rdquo;
+                    </p>
 
-                    {/* Highlight Metric Chip */}
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0055FF]/15 border border-[#0055FF]/30 text-[#38BDF8] text-xs font-semibold">
-                      <Award className="w-4 h-4 text-[#38BDF8]" />
-                      <span>{currentTestimonial.impactMetric}</span>
+                    {/* Impact Metric Badge & Author Info */}
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-6 border-t border-white/10">
+                      
+                      {/* Author Details */}
+                      <div className="flex items-center gap-4">
+                        <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${currentTestimonial.accentColor} flex items-center justify-center text-white font-bold font-heading text-sm shadow-md`}>
+                          {currentTestimonial.avatarInitials}
+                        </div>
+                        <div>
+                          <h4 className="text-base font-bold text-white font-heading">
+                            {currentTestimonial.name}
+                          </h4>
+                          <p className="text-xs text-[#38BDF8] font-medium font-sans">
+                            {currentTestimonial.role}
+                          </p>
+                          <p className="text-xs text-slate-400 font-mono flex items-center gap-1 mt-0.5">
+                            <Building2 className="w-3 h-3" />
+                            <span>{currentTestimonial.company}</span>
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Highlight Metric Chip */}
+                      <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0055FF]/15 border border-[#0055FF]/30 text-[#38BDF8] text-xs font-semibold">
+                        <Award className="w-4 h-4 text-[#38BDF8]" />
+                        <span>{currentTestimonial.impactMetric}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </GlassCard>
               </motion.div>
             </AnimatePresence>
           </div>
