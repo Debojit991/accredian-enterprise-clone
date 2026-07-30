@@ -1,16 +1,16 @@
 # Accredian Enterprise Landing Page Clone
 
-A production-ready, highly responsive, dark-mode enterprise landing page built with **Next.js 15 (App Router)**, **Tailwind CSS v4**, and **Framer Motion**. Designed as a strategic clone of the [Accredian Enterprise](https://enterprise.accredian.com) workforce transformation platform.
+A production-ready, highly responsive, light-mode corporate enterprise landing page built with **Next.js 15 (App Router)**, **Tailwind CSS v4**, and **Framer Motion**. Designed as a strategic clone of the [Accredian Enterprise](https://enterprise.accredian.com) workforce transformation platform.
 
 ---
 
 ## 🚀 Project Overview
 
-This application serves as a modern B2B upskilling landing page targeting Fortune 500 decision-makers and enterprise leaders. It features an interactive hero section, animated quantitative metrics counters, continuous partner logo marquees, modular bento grid capability showcases, an executive testimonial carousel, and a full-stack lead capture form.
+This application serves as a modern B2B upskilling landing page targeting Fortune 500 decision-makers and enterprise leaders. It features an interactive hero section, animated quantitative metrics counters, continuous partner logo marquees, 7-step Accredian Edge pillars, 7 domain expertise modules, the CAT Framework, a 3-step delivery process, tabbed FAQ accordions, authentic Bayer partner testimonials, a corporate blue CTA banner, and a full-stack lead capture form.
 
 ### Key Highlights
 *   **Next.js 15 App Router & Server/Client Architecture**
-*   **Tailwind CSS v4 Theme Token Extensions** (`#0B132B` primary navy, `#0055FF` sapphire accent, glassmorphism utilities)
+*   **Tailwind CSS v4 Theme Token Extensions** (`#FFFFFF` pure white, `#0F172A` slate, `#0055FF` corporate blue accent)
 *   **Hardware-Accelerated Framer Motion Micro-Animations**
 *   **Data-Driven Dynamic Component Renderers** (100% typed interfaces, zero hardcoded JSX repetition)
 *   **Custom Next.js API Route Backend (`/api/contact`)**
@@ -44,17 +44,22 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 The project was executed following a strict phase-by-phase engineering strategy:
 
-1.  **Design System & Theme Extensions**: Defined a custom dark-mode enterprise color palette, typography pairing (`Plus Jakarta Sans` + `Inter`), 4px grid spacing scale, and glassmorphism elevation rules in `DESIGN.md` and `app/globals.css`.
+1.  **Design System & Theme Extensions**: Defined a clean corporate light-mode design system, typography pairing (`Plus Jakarta Sans` + `Inter`), 4px grid spacing scale, and soft drop shadow elevation rules in `DESIGN.md` and `app/globals.css`.
 2.  **Modular Reusable UI Components**:
-    *   `<GlassCard>`: Reusable glassmorphism surface container leveraging `clsx` and `tailwind-merge` (`cn`).
+    *   `<GlassCard>`: Reusable corporate card container leveraging `clsx` and `tailwind-merge` (`cn`).
     *   `<SectionHeading>`: Reusable header component for consistent section titles, subtitles, and uppercase category badges.
-3.  **Strict Data-Driven Sections**: Every section is driven by typed TypeScript interfaces (`EnterpriseMetric`, `Capability`, `Testimonial`, `NavRoute`, `FooterColumn`, `Partner`):
-    *   `Hero.tsx`: Ambient gradient mesh, exact headline, dual CTAs, and live analytics mockup.
-    *   `MetricsBar.tsx`: Intersection observer count-up counters with `{ once: true }` trigger to prevent scroll lag.
-    *   `PartnerStrip.tsx`: Infinite-scroll marquee with pause-on-hover and gradient edge fading masks.
-    *   `CapabilitiesGrid.tsx`: Asymmetric Bento Grid layout with mobile breakpoint overrides.
-    *   `Testimonials.tsx`: Modulo arithmetic bounds-safe carousel with Framer Motion slide/fade transitions.
-    *   `ContactForm.tsx`: Lead capture form with real-time field validation and feedback states.
+3.  **Strict Data-Driven Sections**: Every section is driven by typed TypeScript interfaces (`EnterpriseMetric`, `EdgePillar`, `DomainItem`, `CATStep`, `DeliveryStep`, `FaqItem`, `Testimonial`, `NavRoute`, `FooterColumn`, `Partner`):
+    *   `Hero.tsx`: Exact headline *"Next-Gen Expertise For Your Enterprise"*, subhead, 3 feature checkmarks, and single `'Enquire Now'` CTA.
+    *   `MetricsBar.tsx`: Track record stats (`10K+ Professionals Trained`, `200+ Sessions Delivered`, `5K+ Active Learners`).
+    *   `PartnerStrip.tsx`: Infinite-scroll marquee showcasing corporate client partners (`HCL`, `Reliance`, `IBM`, `CRIF`, `ADP`, `Bayer`).
+    *   `AccredianEdge.tsx`: 7-step horizontal framework timeline grid.
+    *   `DomainExpertise.tsx`: 7 corporate domain expertise white cards.
+    *   `CATFramework.tsx`: 3-stage pedagogical methodology (`Concept`, `Application`, `Tools`).
+    *   `DeliveryProcess.tsx`: 3-step structured delivery approach (`Skill Gap Analysis`, `Customized Training Plan`, `Flexible Program Delivery`).
+    *   `FaqAccordion.tsx`: Tabbed FAQ interface with expanding accordion panels.
+    *   `Testimonials.tsx`: Interactive carousel featuring authentic Bayer client partner quotes.
+    *   `CtaBanner.tsx`: Corporate blue engagement banner with white CTA button.
+    *   `ContactForm.tsx`: Full-stack lead capture form wired to `/api/contact`.
 
 ---
 
@@ -63,16 +68,16 @@ The project was executed following a strict phase-by-phase engineering strategy:
 This application was developed in partnership with AI tooling (Antigravity & 21st.dev Magic MCP) under strict human architectural supervision, as documented in [`AI-LOG.md`](./AI-LOG.md).
 
 ### AI Scaffolding & Assistance
-*   Used **21st.dev Magic MCP** to query and fetch component layout patterns (`Hero Section Dark`, `id: 19`).
+*   Used **21st.dev Magic MCP** to query and fetch component layout patterns.
 *   Used **UI/UX Pro Max** skill for design system recommendation queries.
 *   Generated initial component scaffolding and structural boilerplate.
 
 ### Manual Engineering Overrides
+*   **Master Visual Pivot to Light Mode**: Intervened when AI initially scaffolded a dark-mode SaaS theme, re-engineering the entire architecture to match the live `enterprise.accredian.com` corporate light-mode aesthetic.
 *   **Backend Persistence API Route**: Manually engineered `app/api/contact/route.ts` with POST payload validation, console logging (`"New Enterprise Lead Captured:"`), and simulated network latency.
-*   **Mobile Breakpoint Overrides**: Manually engineered CSS grid column overrides (`grid-cols-1 lg:grid-cols-3`) on the Capabilities Bento Grid to eliminate horizontal overflow on mobile screens (~375px).
+*   **Surgical Refactoring**: Deleted leftover dark-mode components (`CapabilitiesGrid.tsx`) and constructed missing reference sections (`DeliveryProcess`, `FaqAccordion`, `CtaBanner`, `AccredianEdge`, `DomainExpertise`, `CATFramework`).
 *   **Class Merging Utility**: Created `lib/utils.ts` (`cn`) combining `clsx` and `tailwind-merge` for conflict-free class overrides.
 *   **Accessibility & Motion Auditing**: Added explicit `aria-label` attributes to carousel buttons and navbar triggers, `aria-hidden="true"` to decorative icons and duplicated marquee items, and `aria-live="assertive"` alert banners on form submission states.
-*   **CSS Import Optimization**: Resolved CSS `@import` order warnings by moving Google Fonts imports to Line 1 of `app/globals.css`.
 
 ---
 

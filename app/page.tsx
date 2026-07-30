@@ -4,8 +4,10 @@ import PartnerStrip from "@/components/sections/PartnerStrip";
 import AccredianEdge from "@/components/sections/AccredianEdge";
 import DomainExpertise from "@/components/sections/DomainExpertise";
 import CATFramework from "@/components/sections/CATFramework";
-import CapabilitiesGrid from "@/components/sections/CapabilitiesGrid";
+import DeliveryProcess from "@/components/sections/DeliveryProcess";
+import FaqAccordion from "@/components/sections/FaqAccordion";
 import Testimonials from "@/components/sections/Testimonials";
+import CtaBanner from "@/components/sections/CtaBanner";
 import ContactForm from "@/components/sections/ContactForm";
 
 export default function Home() {
@@ -17,8 +19,10 @@ export default function Home() {
       <AccredianEdge />
       <DomainExpertise />
       <CATFramework />
-      <CapabilitiesGrid />
+      <DeliveryProcess />
+      <FaqAccordion />
       <Testimonials />
+      <CtaBanner />
       <ContactForm />
     </div>
   );

@@ -16,42 +16,27 @@ export interface Testimonial {
   avatarInitials: string;
 }
 
+/**
+ * Exact real client quotes from Bayer
+ */
 const TESTIMONIALS_DATA: Testimonial[] = [
   {
-    id: "testimonial-1",
-    name: "Dr. Aris Thorne",
-    role: "Chief Data Officer",
-    company: "Global Financial Technologies",
-    quote: "Accredian Enterprise completely transformed our data science and AI capability scaling. In under six months, over 1,200 senior engineers and analysts were upskilled on enterprise LLM deployment, reducing our model time-to-market by 65%.",
-    impactMetric: "65% Faster AI Time-to-Market",
-    avatarInitials: "AT",
+    id: "bayer-1",
+    name: "Enterprise Learning Lead",
+    role: "Learning & Capability Development",
+    company: "Bayer",
+    quote: "We would like to thank Accredian for the wonderful support and the beautiful journey. The team turned our vision into reality with unparalleled dedication, service, and expertise throughout the entire process.",
+    impactMetric: "Validated Partner Impact",
+    avatarInitials: "BY",
   },
   {
-    id: "testimonial-2",
-    name: "Elena Rostova",
-    role: "VP of Engineering & Platform",
-    company: "Apex Cloud Systems",
-    quote: "Finding high-impact curricula tailored for senior architects is incredibly difficult. Accredian’s modular programs provided our engineering leads with deep hands-on expertise in MLOps, RAG architectures, and AI security governance.",
-    impactMetric: "1,400+ Engineers Certified",
-    avatarInitials: "ER",
-  },
-  {
-    id: "testimonial-3",
-    name: "Marcus Vance",
-    role: "Head of Product & Innovation",
-    company: "Nexus HealthTech Enterprise",
-    quote: "The strategic impact on our product pipeline was immediate. Our product managers and domain leads learned how to integrate generative AI features seamlessly while ensuring strict healthcare compliance and data privacy.",
-    impactMetric: "3.8x Product Delivery Velocity",
-    avatarInitials: "MV",
-  },
-  {
-    id: "testimonial-4",
-    name: "Sophia Chen",
-    role: "Executive Director of Talent & Culture",
-    company: "Vanguard Logistics Global",
-    quote: "Accredian is not just a learning vendor—they are a true capability transformation partner. The executive dashboard gives our leadership full visibility into skill mastery and business ROI metrics across 14 global divisions.",
-    impactMetric: "98.4% Executive Retention Rate",
-    avatarInitials: "SC",
+    id: "bayer-2",
+    name: "Senior Talent Partner",
+    role: "Global Talent & Capability",
+    company: "Bayer",
+    quote: "Accredian's commitment to excellence is unmatched. They consistently go the extra mile to ensure our needs are met and exceeded, providing reliable support and high-quality service every step of the way.",
+    impactMetric: "Exceeded Expectation Score",
+    avatarInitials: "BY",
   },
 ];
 
@@ -92,14 +77,14 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="relative py-24 bg-white border-t border-slate-200/80 overflow-hidden">
+    <section id="testimonials" className="relative py-24 bg-[#F8FAFC] border-t border-slate-200/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Exact Required Section Heading */}
+        {/* Exact Required Steering Headline */}
         <SectionHeading
-          badge="EXECUTIVE IMPACT"
-          title="Voices of Transformation: Executive Perspectives on Organizational Growth"
-          subtitle="Hear how enterprise leaders across Fortune 500 companies drive strategic capability upskilling with Accredian."
+          badge="CLIENT PERSPECTIVES"
+          title="Testimonials from Our Partners: What Our Clients Are Saying"
+          subtitle="Real executive perspectives on Accredian's enterprise capability transformation engagements."
           className="mb-16"
         />
 
@@ -107,7 +92,7 @@ export default function Testimonials() {
         <div className="max-w-4xl mx-auto relative">
           
           {/* Main Animated Testimonial Card */}
-          <div className="relative min-h-[360px] sm:min-h-[300px] flex items-center">
+          <div className="relative min-h-[340px] sm:min-h-[280px] flex items-center">
             <AnimatePresence custom={direction} mode="wait">
               <motion.div
                 key={currentTestimonial.id}
@@ -146,8 +131,8 @@ export default function Testimonials() {
                             {currentTestimonial.role}
                           </p>
                           <p className="text-xs text-slate-500 font-mono flex items-center gap-1 mt-0.5">
-                            <Building2 className="w-3.5 h-3.5" />
-                            <span>{currentTestimonial.company}</span>
+                            <Building2 className="w-3.5 h-3.5 text-[#0055FF]" />
+                            <span className="font-bold text-slate-700">{currentTestimonial.company}</span>
                           </p>
                         </div>
                       </div>
